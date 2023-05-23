@@ -17,7 +17,7 @@ export const MainNavigator = () => {
 
       screenOptions={{
       tabBarStyle: { 
-        position: 'absolute',
+        // position: 'absolute',
         backgroundColor:'#4C568F',
         height:'10%',
 

@@ -20,7 +20,7 @@ export const HomeContainer = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: true, headerTitleAlign:'center'}}>
     <Stack.Screen name="FindRoute" component={FindRoute} />
-    <Stack.Screen name="ListRoute" component={ListRoute}/>
+    <Stack.Screen name="ListRoute" component={ListRoute} options={{title: 'TÌM CHUYẾN'}}/>
     <Stack.Screen name="RouteDetail" component={RouteDetail}/>
     </Stack.Navigator>
   );
