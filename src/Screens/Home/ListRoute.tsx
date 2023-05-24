@@ -3,7 +3,7 @@ import React from 'react'
 
 const ListRoute = ({navigation}: {navigation: any}) => {
   function goToDetailPage(){
-    navigation.navigate("RouteDetail")
+    navigation.navigate("StopSpot")
   }
   return (
     <View>
