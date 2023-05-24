@@ -8,6 +8,7 @@ import { UserContainer } from "@/Screens/User";
 import { default as IoniconsIcon } from 'react-native-vector-icons/Ionicons'
 import { default as AntDesign } from 'react-native-vector-icons/AntDesign'
 import { default as MaterialComunityIcon } from 'react-native-vector-icons/MaterialCommunityIcons'
+import { color } from "native-base/lib/typescript/theme/styled-system";
 const Tab = createBottomTabNavigator();
 
 // @refresh reset
@@ -29,8 +30,8 @@ export const MainNavigator = () => {
         options={{
           headerShown:false,
           tabBarShowLabel:false,
-          tabBarIcon:() => (
-            <IoniconsIcon name='ios-bus' size={35} color={"#FFFFFF"} />
+          tabBarIcon:({focused}) => (
+            <IoniconsIcon name='ios-bus' size={35} style={{color: focused ?  '#3e3e3b' : '#ffffff'}} />
           ),
 
         }}
@@ -41,8 +42,8 @@ export const MainNavigator = () => {
         options={{
           headerShown:false,
           tabBarShowLabel:false,
-          tabBarIcon:() => (
-            <IoniconsIcon name='search' size={35} color={"#FFFFFF"}/>
+          tabBarIcon:({focused}) => (
+            <IoniconsIcon name='search' size={35} style={{color: focused ?  '#3e3e3b' : '#ffffff'}}/>
           ),
         }}
       />
@@ -52,8 +53,8 @@ export const MainNavigator = () => {
         options={{
           headerShown:false,
           tabBarShowLabel:false,
-          tabBarIcon:() => (
-            <MaterialComunityIcon name='heart-multiple-outline' size={35} color={"#FFFFFF"}/>
+          tabBarIcon:({focused}) => (
+            <MaterialComunityIcon name='heart-multiple-outline' size={35} style={{color: focused ?  '#3e3e3b' : '#ffffff'}}/>
           ),
         }}
       />
@@ -64,8 +65,8 @@ export const MainNavigator = () => {
         options={{
           tabBarShowLabel:false,
           headerShown:false,
-          tabBarIcon:() => (
-            <IoniconsIcon name='ios-notifications' size={35} color={"#FFFFFF"}/>
+          tabBarIcon:({focused}) => (
+            <IoniconsIcon name='ios-notifications' size={35} style={{color: focused ?  '#3e3e3b' : '#ffffff'}}/>
           ),
         }}
       />
@@ -75,8 +76,8 @@ export const MainNavigator = () => {
         options={{
           headerShown:false,
           tabBarShowLabel:false,
-          tabBarIcon:() => (
-            <AntDesign name='user' size={35} color={"#FFFFFF"} />
+          tabBarIcon:({focused}) => (
+            <AntDesign name='user' size={35} style={{color: focused ?  '#3e3e3b' : '#ffffff'}}/>
           ),
         }}
       />

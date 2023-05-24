@@ -18,8 +18,8 @@ export const FavouriteRouteContainer = () => {
 
   return (
     <Stack.Navigator screenOptions={{headerShown: true, headerTitleAlign:'center'}}>
-      <Stack.Screen name="FavouriteRoute" component={FavouriteRoute} options={{title: 'CHUYẾN YÊU THÍCH'}}/>
-      <Stack.Screen name="RouteDetail" component={RouteDetail}/>
+      <Stack.Screen name="FavRoute" component={FavouriteRoute} options={{title: 'CHUYẾN YÊU THÍCH'}}/>
+      <Stack.Screen name="RouteDetail" component={RouteDetail} options={{title: ''}}/>
     </Stack.Navigator>
   );
 };

@@ -4,7 +4,7 @@ import { default as IoniconsIcon } from 'react-native-vector-icons/Ionicons'
 
 const ListRoute = ({navigation}: {navigation: any}) => {
   function goToDetailPage(){
-    navigation.navigate("StopSpot")
+    navigation.navigate("RouteDetail")
   }
   return (
     <ScrollView style={{ paddingLeft: 20, paddingRight: 20, marginTop: 10 }}>
