@@ -19,9 +19,9 @@ export const HomeContainer = () => {
   }, [fetchOne, userId]);
 
   return (
-    <Stack.Navigator screenOptions={{headerShown: true, headerTitleAlign:'center',animationTypeForReplace:'pop'}}>
-    <Stack.Screen  name="FindRoute" component={FindRoute} />
-    <Stack.Screen name="ListRoute" component={ListRoute}/>
+    <Stack.Navigator screenOptions={{headerShown: true, headerTitleAlign:'center', animationTypeForReplace:'pop'}}>
+    <Stack.Screen name="FindRoute" component={FindRoute} />
+    <Stack.Screen name="ListRoute" component={ListRoute} options={{title: 'TÌM CHUYẾN'}}/>
     <Stack.Screen options={{headerShown:false}} name="StopSpot" component={StopSpot}/>
     <Stack.Screen options={{headerShown:false}} name="RouteDetail" component={RouteDetail}/>
     </Stack.Navigator>
