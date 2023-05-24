@@ -1,7 +1,7 @@
 import { ScrollView, TouchableHighlight,StyleSheet,View, Text} from 'react-native'
 import React from 'react'
 import MapView from 'react-native-maps';
-import { default as IoniconsIcon } from 'react-native-vector-icons/Octicons'
+import { default as OcticonIcon } from 'react-native-vector-icons/Octicons'
 import { default as MaterialIcon } from 'react-native-vector-icons/MaterialCommunityIcons'
 import { default as FontIcon } from 'react-native-vector-icons/FontAwesome'
 const StopSpot = ({navigation}: {navigation: any}) => {
@@ -142,7 +142,7 @@ const T=(props:any)=>{
 
   return(
     <View style={[styles.rowFlex,{justifyContent:'flex-start',marginLeft:15,marginVertical:10,alignItems:'center'}]}>
-      {/* <IoniconsIcon name='dot' size={18} color={"black"}/> */}
+   
       <FontIcon name='minus' size={12} color={"black"}/>
       <Text style={{marginLeft:5,fontSize:16,color:"#4C586F"}}>{props.spot}</Text>
     </View>
