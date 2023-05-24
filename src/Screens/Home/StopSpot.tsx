@@ -2,7 +2,8 @@ import { ScrollView, TouchableHighlight,StyleSheet,View, Text} from 'react-nativ
 import React from 'react'
 import MapView from 'react-native-maps';
 import { default as IoniconsIcon } from 'react-native-vector-icons/Octicons'
-import { default as EntypoIcon } from 'react-native-vector-icons/MaterialCommunityIcons'
+import { default as MaterialIcon } from 'react-native-vector-icons/MaterialCommunityIcons'
+import { default as FontIcon } from 'react-native-vector-icons/FontAwesome'
 const StopSpot = ({navigation}: {navigation: any}) => {
  
   const [spot,setSpot] = React.useState(["Bến xe buýt Quận 8",
@@ -82,6 +83,9 @@ const StopSpot = ({navigation}: {navigation: any}) => {
   function goToDetailPage(){
     navigation.navigate("RouteDetail")
   }
+  function goToRatingPage(){
+    navigation.navigate("Rating")
+  }
   function reverseSpot(){
     var temp = startSpot;
     setStartSpot(endSpot);
@@ -109,7 +113,7 @@ const StopSpot = ({navigation}: {navigation: any}) => {
           <TouchableHighlight  style={[styles.button]} onPress={goToDetailPage}>
             <Text style={{color:'#4C586F',fontWeight:'bold'}}>CHI TIẾT</Text>
           </TouchableHighlight>
-          <TouchableHighlight  style={[styles.button]}>
+          <TouchableHighlight onPress={goToRatingPage} style={[styles.button]}>
             <Text style={{color:'#4C586F',fontWeight:'bold'}}>ĐÁNH GIÁ</Text>
           </TouchableHighlight>
         </View>
@@ -117,7 +121,7 @@ const StopSpot = ({navigation}: {navigation: any}) => {
             <Text style={{color:'#4C586F',fontSize:16,width:'40%',fontWeight:'bold'}}>{startSpot}</Text>
             <TouchableHighlight onPress={reverseSpot} style={{borderRadius:15,height:25,width:50,borderWidth:1,borderColor:"#FFF",backgroundColor:'#FFFFFF',flexDirection:'column',justifyContent:'center',alignItems:'center'}} 
                 underlayColor="#E8E8E8">
-                <EntypoIcon name='swap-horizontal-bold' size={22} color={"#4C586F"}/>
+                <MaterialIcon name='swap-horizontal-bold' size={22} color={"#4C586F"}/>
             </TouchableHighlight>
             <Text style={{color:'#4C586F',fontSize:16,width:'40%',fontWeight:'bold'}}>{endSpot}</Text>
         </View>
@@ -128,7 +132,7 @@ const StopSpot = ({navigation}: {navigation: any}) => {
             )
           })
         }
-        <View style={{height:100}}></View>
+     
         </ScrollView>
 
     </View>
@@ -137,8 +141,9 @@ const StopSpot = ({navigation}: {navigation: any}) => {
 const T=(props:any)=>{
 
   return(
-    <View style={[styles.rowFlex,{justifyContent:'flex-start',marginLeft:15,marginVertical:10}]}>
-      <IoniconsIcon name='dot' size={18} color={"black"}/>
+    <View style={[styles.rowFlex,{justifyContent:'flex-start',marginLeft:15,marginVertical:10,alignItems:'center'}]}>
+      {/* <IoniconsIcon name='dot' size={18} color={"black"}/> */}
+      <FontIcon name='minus' size={12} color={"black"}/>
       <Text style={{marginLeft:5,fontSize:16,color:"#4C586F"}}>{props.spot}</Text>
     </View>
   )

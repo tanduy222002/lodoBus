@@ -19,10 +19,10 @@ const ApplicationNavigator = () => {
     <NavigationContainer>
       <StatusBar />
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
-        <RootStack.Screen
+        {/* <RootStack.Screen
           name={RootScreens.WELCOME}
           component={WelcomeContainer}
-        />
+        /> */}
         <RootStack.Screen
           name={RootScreens.MAIN}
           component={MainNavigator}

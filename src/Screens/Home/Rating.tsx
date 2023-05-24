@@ -1,7 +1,7 @@
 import { ScrollView,TouchableHighlight,StyleSheet,View, Text} from 'react-native'
 import React from 'react'
 import MapView from 'react-native-maps';
-const RouteDetail = ({navigation}: {navigation: any}) => {
+const Rating = ({navigation}: {navigation: any}) => {
   var myObject = {
     name:{title:"Tên chuyến", content:"Chuyến số 8"},
     start:{title:"Bến đầu", content:"Bến xe bus quận 8"},
@@ -16,11 +16,13 @@ const RouteDetail = ({navigation}: {navigation: any}) => {
    }
 
   
-  function goToRatingPage(){
-    navigation.navigate("Rating")
-  }
+
   function goToStopSpotPage(){
     navigation.navigate("StopSpot")
+  }
+  
+  function goToDetailPage(){
+    navigation.navigate("RouteDetail")
   }
     return (
     <View style={[styles.container]}>
@@ -35,23 +37,26 @@ const RouteDetail = ({navigation}: {navigation: any}) => {
           followsUserLocation={true}
           style={{width:"100%",height:"30%"}} />
         <View style={[styles.rowFlex,{width:'100%',height:'5%',marginVertical:10}]}>
-          <TouchableHighlight style={[styles.button]} onPress={goToStopSpotPage}>
+          <TouchableHighlight onPress={goToStopSpotPage} style={[styles.button]} >
             <Text style={{color:'#4C586F',fontWeight:'bold'}}>TRẠM DỪNG</Text>
           </TouchableHighlight>
-          <TouchableHighlight  style={[styles.button,{backgroundColor:'#4C586F'}]}>
-            <Text style={{color:'#FFF',fontWeight:'bold'}}>CHI TIẾT</Text>
+          <TouchableHighlight onPress={goToDetailPage} style={[styles.button,{backgroundColor:'#FFF'}]}>
+            <Text style={{color:'#4C586F',fontWeight:'bold'}}>CHI TIẾT</Text>
           </TouchableHighlight>
-          <TouchableHighlight onPress={goToRatingPage}  style={[styles.button]}>
-            <Text style={{color:'#4C586F',fontWeight:'bold'}}>ĐÁNH GIÁ</Text>
+          <TouchableHighlight  style={[styles.button,{backgroundColor:"#4C586F"}]}>
+            <Text style={{color:'#FFF',fontWeight:'bold'}}>ĐÁNH GIÁ</Text>
           </TouchableHighlight>
         </View>
         <ScrollView style={{width:"100%"}}>
+          <View>
+            
+          </View>
           {Object.entries(myObject).map(([key,v])=>{
             return <T detail={v} key={key}/>
            })}
 
           </ScrollView>
-         
+          {/* <View style={{height:100}}></View> */}
     </View>
   )
 }
@@ -59,7 +64,7 @@ const T=(props:any)=>{
 
   return(
     <View style={{maxWidth:"100%",flexWrap: 'wrap',justifyContent:'flex-start',marginHorizontal:15,marginVertical:3,alignItems:'flex-start',flexDirection:'row'}}>
-      <Text style={{marginRight:5,fontSize:15,color:"#4C586F",fontWeight:'bold'}}>{props.detail.title}:</Text>
+      <Text style={{marginRight:5,fontSize:16,color:"#4C586F",fontWeight:'bold'}}>{props.detail.title}:</Text>
       <Text style={{fontSize:15,color:"#969EA3"}}>{props.detail.content}</Text>
     </View>
   )
@@ -94,4 +99,4 @@ columnFlex:{
 }
 
 });
-export default RouteDetail
+export default Rating

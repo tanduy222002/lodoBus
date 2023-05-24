@@ -7,6 +7,8 @@ import ListRoute from "./ListRoute";
 import RouteDetail from "./RouteDetail";
 import StopSpot from "./StopSpot";
 import { List } from "native-base";
+import Rating from "./Rating";
+import { themeReducers } from "@/Store/reducers";
 const Stack = createNativeStackNavigator();
 export const HomeContainer = () => {
   const [userId, setUserId] = useState("9");
@@ -19,11 +21,12 @@ export const HomeContainer = () => {
   }, [fetchOne, userId]);
 
   return (
-    <Stack.Navigator screenOptions={{headerShown: true, headerTitleAlign:'center', animationTypeForReplace:'pop'}}>
-    <Stack.Screen name="FindRoute" component={FindRoute} />
-    <Stack.Screen name="ListRoute" component={ListRoute} options={{title: 'TÌM CHUYẾN'}}/>
-    <Stack.Screen options={{headerShown:false}} name="StopSpot" component={StopSpot}/>
-    <Stack.Screen options={{headerShown:false}} name="RouteDetail" component={RouteDetail}/>
+    <Stack.Navigator screenOptions={{headerShown: false, headerTitleAlign:'center', animationTypeForReplace:'pop'}}>
+      <Stack.Screen name="FindRoute" component={FindRoute} />
+      <Stack.Screen name="ListRoute" component={ListRoute} options={{title: 'Tìm chuyến',headerShown:true}}/>
+      <Stack.Screen  name="StopSpot" component={StopSpot}/>
+      <Stack.Screen  name="RouteDetail" component={RouteDetail}/>
+      <Stack.Screen name="Rating" component={Rating}/>
     </Stack.Navigator>
   );
 };
