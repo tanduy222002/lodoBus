@@ -25,7 +25,7 @@ const FindRoute = ({navigation}) => {
   },[])
 
 
-  function goToListRoutePage(keyword: string, routes: object[]){
+  async function goToListRoutePage(keyword: string, routes: object[]){
     const ids:number[] = []
     routes.forEach((route)=>{
       if (route['RouteNo'].search(keyword) !== -1) {
@@ -33,14 +33,14 @@ const FindRoute = ({navigation}) => {
       }
     })
     const detailRoutes:object[] = []
-    ids.forEach(element => {
+    await ids.forEach(element => {
       axios.get(`http://apicms.ebms.vn/businfo/getroutebyid/`+ element)
       .then((response)=>{
         detailRoutes.push(response.data);
       })
     });
-    setRouteIds(detailRoutes);
-    navigation.navigate('ListRoute', {
+    await setRouteIds(detailRoutes);
+    await navigation.navigate('ListRoute', {
       detailRoutes: routeIds,
     })
   }
