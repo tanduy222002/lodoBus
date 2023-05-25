@@ -21,22 +21,10 @@ export const HomeContainer = () => {
     fetchOne(userId);
   }, [fetchOne, userId]);
 
-  const [routes, setRoutes] = useState<object[]>([])
-
-  useEffect(()=>{
-    axios.get(`http://apicms.ebms.vn/businfo/getallroute`)
-    .then(async (response)=> {
-      var arr:object[] = []; 
-      await response.data.forEach((route: object) => {
-        arr.push(route)
-      })
-      setRoutes(arr)
-    })
-  },[])
 
   return (
     <Stack.Navigator screenOptions={{headerShown: false, headerTitleAlign:'center', animationTypeForReplace:'pop'}}>
-      <Stack.Screen name="FindRoute" component={FindRoute} initialParams={{ routes: routes }}/>
+      <Stack.Screen name="FindRoute" component={FindRoute} />
       <Stack.Screen name="ListRoute" component={ListRoute} options={{title: 'TÌM CHUYẾN',headerShown:true}} />
       {/* <Stack.Screen  name="StopSpot" component={StopSpot}/> */}
       <Stack.Screen  name="RouteDetail" component={RouteDetail} options={{title: '',headerShown:true}}/>

@@ -5,13 +5,24 @@ import MapView from 'react-native-maps';
 import { default as IoniconsIcon } from 'react-native-vector-icons/Ionicons'
 import { Column } from 'native-base';
 import { default as OcticonIcon } from 'react-native-vector-icons/Octicons'
-const FindRoute = ({route, navigation}) => {
+const FindRoute = ({navigation}) => {
   const [RouteID,setRouteID] = useState()
   const [routeIds,setRouteIds] = useState<object[]>([])
   const [startPoint,setStartPoint] = React.useState("")
   const [endPoint,setEndPoint] = React.useState("")
 
-  const { routes } = route.params;
+  const [routes, setRoutes] = useState<object[]>([])
+
+  useEffect(()=>{
+    axios.get(`http://apicms.ebms.vn/businfo/getallroute`)
+    .then(async (response)=> {
+      var arr:object[] = []; 
+      await response.data.forEach((route: object) => {
+        arr.push(route)
+      })
+      setRoutes(arr)
+    })
+  },[])
 
 
   function goToListRoutePage(keyword: string, routes: object[]){
@@ -42,8 +53,9 @@ const FindRoute = ({route, navigation}) => {
   
     })
   }
-
+  
   return (
+    routes.length > 0 ?
     <View style={styles.container}>
         <MapView initialRegion={{
             latitude: 10.878770802642624, 
@@ -131,7 +143,8 @@ const FindRoute = ({route, navigation}) => {
         </View>
      
 
-    </View>
+    </View>:
+    <View></View>
   )
 }
 const styles = StyleSheet.create({
