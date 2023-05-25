@@ -12,26 +12,26 @@ const RouteDetail = ({ route, navigation }) => {
     end: { title: "Bến cuối", content: detailRoute.OutBoundName.replaceAll('¿', '') },
     distance: { title: "Độ dài chuyến", content: detailRoute.Distance/1000 + ' km' },
     time: { title: "Thời gian di chuyển", content: detailRoute.TimeOfTrip + ' phút' },
-    time_between: { title: "Giãn cách chuyến", content: detailRoute.Headway },
-    unit: { title: "Số chuyến", content: detailRoute.TotalTrip },
-    res: { title: "Đơn vị phụ trách", content: detailRoute.Orgs },
-    startRoute: { title: "Lượt đi", content: detailRoute.InBoundDescription },
-    retRoute: { title: "Lượt về", content: detailRoute.OutBoundDescription },
+    time_between: { title: "Giãn cách chuyến", content: detailRoute.Headway + ' phút/chuyến' },
+    unit: { title: "Số chuyến", content: detailRoute.TotalTrip.replaceAll(' [TPD]', '/ngày') },
+    res: { title: "Đơn vị phụ trách", content: detailRoute.Orgs.replaceAll('<br/>', '\n') },
+    startRoute: { title: "Lượt đi", content: detailRoute.InBoundDescription.replaceAll('¿', '') },
+    retRoute: { title: "Lượt về", content: detailRoute.OutBoundDescription.replaceAll('¿', '') },
   }
   var myObject1 = {
 
   }
 
-  console.log(detailRoute)
+  // console.log(detailRoute)
 
-  const [spot, setSpot] = React.useState([])
-  const [startSpot, setStartSpot] = React.useState(detailRoute.InBoundName)
-  const [endSpot, setEndSpot] = React.useState(detailRoute.OutBoundName)
+  const [spot, setSpot] = React.useState(['- ' + detailRoute.OutBoundDescription.replaceAll('¿', '').replaceAll(' - ', '\n- ')])
+  const [startSpot, setStartSpot] = React.useState(detailRoute.InBoundName.replaceAll('¿', ''))
+  const [endSpot, setEndSpot] = React.useState(detailRoute.OutBoundName.replaceAll('¿', ''))
 
   const DT = (props: any) => {
     return (
       <View style={[styles.rowFlex, { justifyContent: 'flex-start', marginLeft: 15, marginVertical: 10, alignItems: 'center' }]}>
-        <FontIcon name='minus' size={12} color={"black"} />
+        {/* <FontIcon name='minus' size={12} color={"black"} /> */}
         <Text style={{ marginLeft: 5, fontSize: 16, color: "#4C586F" }}>{props.spot}</Text>
       </View>
     )
