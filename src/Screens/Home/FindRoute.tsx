@@ -39,10 +39,12 @@ const FindRoute = ({navigation}) => {
         detailRoutes.push(response.data);
       })
     });
-    await setRouteIds(detailRoutes);
-    await navigation.navigate('ListRoute', {
-      detailRoutes: routeIds,
-    })
+    setTimeout(() => {
+      setRouteIds(detailRoutes);
+      navigation.navigate('ListRoute', {
+        detailRoutes: routeIds,
+      })
+    }, 1000);
   }
   
   function goToListRoutePage1(keyword, keyword1, routes: object[]){
