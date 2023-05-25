@@ -37,14 +37,19 @@ const FindRoute = ({navigation}) => {
       axios.get(`http://apicms.ebms.vn/businfo/getroutebyid/`+ element)
       .then((response)=>{
         detailRoutes.push(response.data);
+        if (ids[ids.length - 1] === element) {
+          setRouteIds(detailRoutes);
+          navigation.navigate('ListRoute', {
+            detailRoutes: routeIds,
+          })
+        }
       })
+
     });
-    setTimeout(() => {
-      setRouteIds(detailRoutes);
-      navigation.navigate('ListRoute', {
-        detailRoutes: routeIds,
-      })
-    }, 1000);
+    // setRouteIds(detailRoutes);
+    // navigation.navigate('ListRoute', {
+    //   detailRoutes: routeIds,
+    // })
   }
   
   function goToListRoutePage1(keyword, keyword1, routes: object[]){
