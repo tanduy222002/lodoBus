@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import { StatusBar } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -16,19 +15,6 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 // @refresh reset
 const ApplicationNavigator = () => {
-  const [routes, setRoutes] = useState<string[]>()
-
-  useEffect(()=>{
-    axios.get(`http://apicms.ebms.vn/businfo/getallroute`)
-    .then(async (response)=> {
-      const arr = []; 
-      await response.data.forEach((route: object) => {
-        // console.log(typeof route['RouteId']);
-        arr.push(route['RouteId'])
-      })
-      // setRoutes(arr)
-    })
-  },[])
 
   return (
     <NavigationContainer>

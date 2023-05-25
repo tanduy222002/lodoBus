@@ -23,7 +23,7 @@ export const HomeContainer = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false, headerTitleAlign:'center', animationTypeForReplace:'pop'}}>
       <Stack.Screen name="FindRoute" component={FindRoute} />
-      <Stack.Screen name="ListRoute" component={ListRoute} options={{title: 'TÌM CHUYẾN',headerShown:true}}/>
+      <Stack.Screen name="ListRoute" component={ListRoute} options={{title: 'TÌM CHUYẾN',headerShown:true}} />
       {/* <Stack.Screen  name="StopSpot" component={StopSpot}/> */}
       <Stack.Screen  name="RouteDetail" component={RouteDetail} options={{title: '',headerShown:true}}/>
       {/* <Stack.Screen name="Rating" component={Rating}/> */}

@@ -1,19 +1,59 @@
 import {TouchableHighlight, TextInput,StyleSheet,Button,View, Text } from 'react-native'
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 import MapView from 'react-native-maps';
 import { default as IoniconsIcon } from 'react-native-vector-icons/Ionicons'
 import { Column } from 'native-base';
 import { default as OcticonIcon } from 'react-native-vector-icons/Octicons'
 const FindRoute = ({navigation}: {navigation: any}) => {
-  function goToListRoutePage(){
-    navigation.navigate('ListRoute', {
-      routeId: RouteID,
-  
-    })
-}
-  const [RouteID,setRouteID] = React.useState("")
+  const [RouteID,setRouteID] = useState()
+  const [routeIds,setRouteIds] = useState<object[]>([])
   const [startPoint,setStartPoint] = React.useState("")
   const [endPoint,setEndPoint] = React.useState("")
+
+    
+  const [routes, setRoutes] = useState<object[]>([])
+
+  useEffect(()=>{
+    axios.get(`http://apicms.ebms.vn/businfo/getallroute`)
+    .then(async (response)=> {
+      var arr:object[] = []; 
+      await response.data.forEach((route: object) => {
+        arr.push(route)
+      })
+      setRoutes(arr)
+    })
+  },[])
+
+  function goToListRoutePage(keyword: string, routes: object[]){
+    const ids:number[] = []
+    routes.forEach((route)=>{
+      if (route['RouteNo'].search(keyword) !== -1) {
+        ids.push(route['RouteId']);
+      }
+    })
+    const detailRoutes:object[] = []
+    ids.forEach(element => {
+      axios.get(`http://apicms.ebms.vn/businfo/getroutebyid/`+ element)
+      .then((response)=>{
+        detailRoutes.push(response.data);
+      })
+    });
+    setRouteIds(detailRoutes);
+    navigation.navigate('ListRoute', {
+      detailRoutes: routeIds,
+    })
+  }
+  
+  function goToListRoutePage1(keyword, keyword1, routes: object[]){
+    
+
+    navigation.navigate('ListRoute', {
+      routeIds: RouteID,
+  
+    })
+  }
+
   return (
     <View style={styles.container}>
         <MapView initialRegion={{
@@ -45,7 +85,7 @@ const FindRoute = ({navigation}: {navigation: any}) => {
           />
          
             <TouchableHighlight style={{height:42,width:42,borderWidth:1,borderColor:"#FFF",backgroundColor:'#FFFFFF',borderRadius:15,flexDirection:'column',justifyContent:'center',alignItems:'center'}} 
-            onPress={goToListRoutePage}
+            onPress={()=>goToListRoutePage(RouteID,routes)}
             underlayColor="#E8E8E8">
               <IoniconsIcon name='search' size={25} color={"black"}/>
             </TouchableHighlight>
@@ -95,7 +135,7 @@ const FindRoute = ({navigation}: {navigation: any}) => {
               />
             </View>
           <TouchableHighlight style={{height:"12%",width:"40%",borderWidth:1,borderColor:"#FFF",backgroundColor:'#4C586F',borderRadius:8,flexDirection:'column',justifyContent:'center',alignItems:'center',marginTop:10}} 
-            onPress={goToListRoutePage}
+            onPress={()=>goToListRoutePage1(startPoint, endPoint, routes)}
               underlayColor="#E8E8E8">
                 <Text style={{fontWeight:'bold',color:"white"}}>TÌM CHUYẾN</Text>
           </TouchableHighlight>

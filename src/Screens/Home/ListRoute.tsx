@@ -1,11 +1,19 @@
 import { Button, View, Text, ScrollView, StyleSheet, TouchableHighlight } from 'react-native'
 import React from 'react'
-import { default as IoniconsIcon } from 'react-native-vector-icons/Ionicons'
+import { default as IoniconsIcon } from 'react-native-vector-icons/Ionicons';
 
-const ListRoute = ({navigation}: {navigation: any}) => {
+const ListRoute = ( { route ,  navigation} ) => {
+  const { detailRoutes }  = route.params;
   function goToDetailPage(){
     navigation.navigate("RouteDetail")
   }
+
+  // const routeDetail = () => {
+    detailRoutes.forEach((route: object) => {
+      console.log(route)
+    });
+  // }
+  
   return (
     <ScrollView style={{ paddingLeft: 20, paddingRight: 20, marginTop: 10 }}>
       <TouchableHighlight style={styles.container} onPress={goToDetailPage} underlayColor={'#ffffff'}>
