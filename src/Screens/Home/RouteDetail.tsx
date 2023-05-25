@@ -7,11 +7,11 @@ import { default as MaterialIcon } from 'react-native-vector-icons/MaterialCommu
 const RouteDetail = ({ route, navigation }) => {
   const { detailRoute } = route.params;
   var myObject = {
-    name: { title: "Tên chuyến", content: detailRoute.RouteNo },
-    start: { title: "Bến đầu", content: detailRoute.InBoundName },
-    end: { title: "Bến cuối", content: detailRoute.OutBoundName },
-    distance: { title: "Độ dài chuyến", content: detailRoute.Distance/1000 },
-    time: { title: "Thời gian di chuyển", content: detailRoute.TimeOfTrip },
+    name: { title: "Tên chuyến", content: detailRoute.RouteNo.replaceAll('¿', '') },
+    start: { title: "Bến đầu", content: detailRoute.InBoundName.replaceAll('¿', '') },
+    end: { title: "Bến cuối", content: detailRoute.OutBoundName.replaceAll('¿', '') },
+    distance: { title: "Độ dài chuyến", content: detailRoute.Distance/1000 + ' km' },
+    time: { title: "Thời gian di chuyển", content: detailRoute.TimeOfTrip + ' phút' },
     time_between: { title: "Giãn cách chuyến", content: detailRoute.Headway },
     unit: { title: "Số chuyến", content: detailRoute.TotalTrip },
     res: { title: "Đơn vị phụ trách", content: detailRoute.Orgs },
