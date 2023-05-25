@@ -5,25 +5,14 @@ import MapView from 'react-native-maps';
 import { default as IoniconsIcon } from 'react-native-vector-icons/Ionicons'
 import { Column } from 'native-base';
 import { default as OcticonIcon } from 'react-native-vector-icons/Octicons'
-const FindRoute = ({navigation}: {navigation: any}) => {
+const FindRoute = ({route, navigation}) => {
   const [RouteID,setRouteID] = useState()
   const [routeIds,setRouteIds] = useState<object[]>([])
   const [startPoint,setStartPoint] = React.useState("")
   const [endPoint,setEndPoint] = React.useState("")
 
-    
-  const [routes, setRoutes] = useState<object[]>([])
+  const { routes } = route.params;
 
-  useEffect(()=>{
-    axios.get(`http://apicms.ebms.vn/businfo/getallroute`)
-    .then(async (response)=> {
-      var arr:object[] = []; 
-      await response.data.forEach((route: object) => {
-        arr.push(route)
-      })
-      setRoutes(arr)
-    })
-  },[])
 
   function goToListRoutePage(keyword: string, routes: object[]){
     const ids:number[] = []
