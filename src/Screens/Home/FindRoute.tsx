@@ -33,7 +33,7 @@ const FindRoute = ({navigation}) => {
       }
     })
     const detailRoutes:object[] = []
-    ids.forEach(element => {
+    await ids.forEach(element => {
       axios.get(`http://apicms.ebms.vn/businfo/getroutebyid/`+ element)
       .then((response)=>{
         detailRoutes.push(response.data);
@@ -45,12 +45,26 @@ const FindRoute = ({navigation}) => {
     })
   }
   
-  function goToListRoutePage1(keyword, keyword1, routes: object[]){
-    
-
+  function goToListRoutePage1(keyword: string, keyword1: string, routes: object[]){
+    const ids:number[] = []
+    keyword = keyword.trim().toLocaleLowerCase();
+    keyword1 = keyword.trim().toLocaleLowerCase();
+    routes.forEach((route)=>{
+      const routeName = route['RouteName'].trim().toLowerCase();
+      if (routeName.search(keyword) !== -1 && routeName.search(keyword1) !== -1) {
+        ids.push(route['RouteId']);
+      }
+    })
+    const detailRoutes:object[] = []
+    ids.forEach(element => {
+      axios.get(`http://apicms.ebms.vn/businfo/getroutebyid/`+ element)
+      .then((response)=>{
+        detailRoutes.push(response.data);
+      })
+    });
+    setRouteIds(detailRoutes);
     navigation.navigate('ListRoute', {
-      routeIds: RouteID,
-  
+      detailRoutes: routeIds,
     })
   }
   
