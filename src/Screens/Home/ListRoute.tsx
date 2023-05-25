@@ -4,8 +4,10 @@ import { default as IoniconsIcon } from 'react-native-vector-icons/Ionicons';
 
 const ListRoute = ({ route, navigation }) => {
   const { detailRoutes } = route.params;
-  function goToDetailPage() {
-    navigation.navigate("RouteDetail")
+  function goToDetailPage(detailRoute) {
+    navigation.navigate("RouteDetail", {
+      detailRoute: detailRoute,
+    })
   }
 
   const routeDetail = () => {
@@ -13,13 +15,12 @@ const ListRoute = ({ route, navigation }) => {
       // console.log(route)
     });
   }
-  console.log(detailRoutes)
 
   return (
     <ScrollView style={{ paddingLeft: 20, paddingRight: 20, marginTop: 10 }}>
       {detailRoutes.map((detailRoute) => {
         return (
-          <TouchableHighlight style={styles.container} onPress={goToDetailPage} underlayColor={'#ffffff'}>
+          <TouchableHighlight style={styles.container} onPress={()=>goToDetailPage(detailRoute)} underlayColor={'#ffffff'}>
             <View>
               <View style={{ flex: 1, justifyContent: 'space-between', flexDirection: 'row', marginBottom: 5 }}>
                 <View style={{ flexDirection: 'row' }}>

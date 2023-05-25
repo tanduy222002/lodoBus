@@ -4,8 +4,8 @@ import MapView from 'react-native-maps';
 import { default as FontIcon } from 'react-native-vector-icons/FontAwesome'
 import { default as MaterialIcon } from 'react-native-vector-icons/MaterialCommunityIcons'
 
-const RouteDetail = ({ detailRoute, navigation }) => {
-  // const { detailRoutes } = route.params;
+const RouteDetail = ({ route, navigation }) => {
+  const { detailRoute } = route.params;
   var myObject = {
     name: { title: "Tên chuyến", content: detailRoute.RouteNo },
     start: { title: "Bến đầu", content: detailRoute.InBoundName },
@@ -21,6 +21,8 @@ const RouteDetail = ({ detailRoute, navigation }) => {
   var myObject1 = {
 
   }
+
+  console.log(detailRoute)
 
   const [spot, setSpot] = React.useState([])
   const [startSpot, setStartSpot] = React.useState(detailRoute.InBoundName)
