@@ -39,9 +39,11 @@ const FindRoute = ({navigation}) => {
         detailRoutes.push(response.data);
         if (ids[ids.length - 1] === element) {
           setRouteIds(detailRoutes);
-          navigation.navigate('ListRoute', {
-            detailRoutes: routeIds,
-          })
+          if (routeIds.length > 0) {
+            navigation.navigate('ListRoute', {
+              detailRoutes: routeIds,
+            })
+          }
         }
       })
 
