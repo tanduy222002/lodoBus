@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Expo Redux Template",
+    "name": "lodoBUS",
     "slug": "expo-redux-template",
     "version": "1.1.0",
     "orientation": "portrait",
@@ -35,7 +35,7 @@
     "plugins": [],
     "extra": {
       "eas": {
-        "projectId": ""
+        "projectId": "b307a0e2-5883-4760-996f-334d60cc106a"
       }
     },
     "runtimeVersion": {
